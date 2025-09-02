@@ -1,7 +1,8 @@
 # Shopify Best Sellers Feature
 
-Shopify URL (password: platter):
-[https://diego-madu.myshopify.com/](https://diego-madu.myshopify.com/)
+**Live Demo**  
+[https://diego-madu.myshopify.com/](https://diego-madu.myshopify.com/)  
+**Password:** `platter`
 
 This project is based on the **Shopify Dawn theme** and demonstrates a custom **Best Sellers** feature.  
 A new **Section** was created where the store owner can select a **Collection**, and all products from that collection will be displayed in a responsive **product grid**.
