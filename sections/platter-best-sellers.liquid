@@ -31,7 +31,7 @@
 
         <div class="platter-grid grid-cols-2 gap-3 md:flex md:gap-6 lg:gap-8 overflow-x-auto scroll-smooth pb-3 pr-0">
             {% for item in section.settings.collection.products %}
-                <div class="min-w-[115px] sm:min-w-[120px] lg:min-w-[250px] {% if forloop.index0 >= 2 %}hidden{% endif %} md:block" data-index="{{ forloop.index0 }}">
+                <div class="platter-card min-w-[115px] sm:min-w-[120px] lg:min-w-[250px] {% if forloop.index0 >= 4 %}platter-card--hidden max-sm:hidden{% endif %}" data-index="{{ forloop.index0 }}">
                     {% render 'platter-card-product',
                     card_product: item,
                     id: forloop.index0,
@@ -53,8 +53,10 @@
 <script defer>
     const PlatterBestSellers = {
         wrapperBestSellers: null,
+        cardProducts: null,
         init() {
             this.wrapperBestSellers = document.querySelector('.section-{{ section.id }}');
+            this.cardProducts = this.wrapperBestSellers.querySelectorAll('.platter-card--hidden');
             this.bindEvents();
         },
         bindEvents() {
@@ -64,11 +66,11 @@
             }
         },
         showMore() {
-            const hiddenItems = this.wrapperBestSellers.querySelectorAll('.platter-grid > div.hidden');
-            hiddenItems.forEach((item, index) => {
-                item.classList.remove('hidden');
+            this.cardProducts.forEach((item, index) => {
+                item.classList.remove('max-sm:hidden', 'platter-card--hidden');
             });
-            if (this.wrapperBestSellers.querySelectorAll('.platter-grid > div.hidden').length === 0) {
+            this.cardProducts = this.wrapperBestSellers.querySelectorAll('.platter-card--hidden');
+            if (this.cardProducts.length === 0) {
                 const button = this.wrapperBestSellers.querySelector('.button');
                 if (button) {
                     button.style.display = 'none';
