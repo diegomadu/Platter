@@ -1,7 +1,7 @@
 # Shopify Best Sellers Feature
 
 **Live Demo**  
-[https://diego-madu.myshopify.com](https://diego-madu.myshopify.com)  
+<a href="https://diego-madu.myshopify.com" target="_blank">https://diego-madu.myshopify.com</a>  
 **Password:** `platter`
 
 This project is based on the **Shopify Dawn theme** and demonstrates a custom **Best Sellers** feature.  
