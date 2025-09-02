@@ -1,0 +1,33 @@
+.section-platter-best-sellers{
+    .scroll-hover {
+        scrollbar-width: none;
+    
+        &::-webkit-scrollbar {
+            height: 6px;
+            display: none;
+        }
+    
+        &:hover {
+            scrollbar-width: thin;
+            scrollbar-color: #ccc transparent;
+    
+            &::-webkit-scrollbar {
+                display: block;
+                transition: opacity 0.3s ease-in-out;
+            }
+    
+            &::-webkit-scrollbar-track {
+                background: transparent;
+            }
+    
+            &::-webkit-scrollbar-thumb {
+                background-color: #ccc;
+                border-radius: 9999px;
+    
+                &:hover {
+                    background-color: #999;
+                }
+            }
+        }
+    }
+}

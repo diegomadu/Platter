@@ -1,0 +1,29 @@
+{% if image != blank %}
+    <div class="platter-media platter-media--{{ id }} relative overflow-hidden">
+        {% liquid
+            assign height = image.width | divided_by: image.aspect_ratio | round
+            assign sizes = '100vw'
+            assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
+        %}
+        {% style %}
+            {% if image_ratio == 'square' %}
+                .platter-media--{{ id }}{
+                    --platter-aspect-ratio: 100%;
+                }                
+            {% elsif image_ratio == 'portrait' %}
+                .platter-media--{{ id }}{
+                    --platter-aspect-ratio: 120%;
+                }                
+            {% else %}
+                .platter-media--{{ id }}{
+                    --platter-aspect-ratio: {{ 1 | divided_by: image.aspect_ratio | times: 100 }}%;
+                }
+            {% endif %}
+        {% endstyle %}
+        {{
+            image
+            | image_url: width: 3000
+            | image_tag: height: height, sizes: sizes, widths: widths, fetchpriority: 'auto', title: alt, alt: alt, class: 'w-full object-cover'
+        }}
+    </div>
+{% endif %}

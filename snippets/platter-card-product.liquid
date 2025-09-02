@@ -1,0 +1,21 @@
+{% liquid
+    assign image_featured = card_product.featured_image
+    assign image_ratio = image_ratio
+%}
+
+<div class="group relative">
+    <a href="{{ card_product.url }}" title="{{ card_product.title }}">
+      <div class="relative overflow-hidden rounded-2xl">
+        <span class="absolute top-3 left-3 border border-gray-300 text-xs font-medium px-2 py-1 rounded-full">BEST SELLER</span>
+        {% render 'platter-image', id: id, image: image_featured, image_ratio: image_ratio %}
+      </div>
+      <div class="p-3">
+          <h3 class="subheading text-[14px] md:text-[16px] font-normal">{{ card_product.title }}</h3>
+          <div class="flex items-center mt-1 space-x-1">
+            <div class="flex text-[10px]">★★★★★</div>
+            <span class="text-[11px] ml-1">1,234 Reviews</span>
+          </div>
+          <p class="mt-5 text-[14px] font-medium">{{ card_product.price | money }}</p>
+      </div>
+    </a>
+</div>
