@@ -1,2 +1,10 @@
+{% style %}
+  :root {
+    --platter-aspect-ratio: 100%;
+    --platter-heading: 'Playfair', sans-serif;
+    --platter-subheading: 'Oswald', sans-serif;
+  }
+{% endstyle %}
+
 {{ 'platter-theme.min.css' | asset_url | stylesheet_tag: preload: true }}
 {{ 'platter-tailwind.css' | asset_url | stylesheet_tag: preload: true }}
