@@ -1,0 +1,24 @@
+.heading {
+    font-family: var(--platter-heading);
+}
+
+.subheading {
+    font-family: var(--platter-subheading);
+}
+
+//Media
+.platter-media{
+    &::before{
+        content: '';
+        display: block;
+        padding-bottom: var(--platter-aspect-ratio);
+    }
+    img {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        object-fit: cover;
+    }    
+}
