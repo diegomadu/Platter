@@ -9,9 +9,18 @@
  */
 {
   "sections": {
-
+    "platter_best_sellers_UDNNkr": {
+      "type": "platter-best-sellers",
+      "name": "Best Sellers",
+      "settings": {
+        "color_scheme": "",
+        "collection": "best-sellers",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
   },
   "order": [
-    
+    "platter_best_sellers_UDNNkr"
   ]
 }
