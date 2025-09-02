@@ -7,17 +7,9 @@
   <a href="{{ card_product.url }}" title="{{ card_product.title }}">
     <div class="relative overflow-hidden rounded-2xl">
 
-      <span class="subheading absolute z-[1] top-3 left-3 border bg-white border-black text-xs font-medium px-2 py-1 rounded-full">
-        BEST SELLER
-      </span>
+      <span class="subheading absolute z-[1] top-3 left-3 border bg-white border-black text-xs font-medium px-2 py-1 rounded-full">BEST SELLER</span>
 
-      {% if card_product.compare_at_price > card_product.price %}
-        {% assign discount = card_product.compare_at_price | minus: card_product.price %}
-        {% assign discount_percentage = discount | times: 100 | divided_by: card_product.compare_at_price | round %}
-        <span class="subheading absolute z-[1] top-3 right-3 bg-green-900 text-white text-xs font-medium px-2 py-1 rounded-full">
-          SAVE {{ discount_percentage }}%
-        </span>
-      {% endif %}
+      {% render 'platter-save' card_product: card_product %}
 
       <div class="relative w-full h-full">
         <div class="w-full h-full">
