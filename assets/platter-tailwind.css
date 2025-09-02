@@ -325,6 +325,9 @@
   .min-w-\[230px\] {
     min-width: 230px;
   }
+  .min-w-\[250px\] {
+    min-width: 250px;
+  }
   .flex-1 {
     flex: 1;
   }
@@ -645,6 +648,16 @@
       display: none;
     }
   }
+  .sm\:flex {
+    @media (width >= 40rem) {
+      display: flex;
+    }
+  }
+  .sm\:hidden {
+    @media (width >= 40rem) {
+      display: none;
+    }
+  }
   .sm\:w-auto {
     @media (width >= 40rem) {
       width: auto;
@@ -653,6 +666,16 @@
   .sm\:min-w-\[120px\] {
     @media (width >= 40rem) {
       min-width: 120px;
+    }
+  }
+  .sm\:min-w-\[160px\] {
+    @media (width >= 40rem) {
+      min-width: 160px;
+    }
+  }
+  .sm\:gap-4 {
+    @media (width >= 40rem) {
+      gap: calc(var(--spacing) * 4);
     }
   }
   .md\:\!inline-flex {
@@ -680,6 +703,16 @@
       display: inline-flex;
     }
   }
+  .md\:min-w-\[200px\] {
+    @media (width >= 48rem) {
+      min-width: 200px;
+    }
+  }
+  .md\:min-w-\[250px\] {
+    @media (width >= 48rem) {
+      min-width: 250px;
+    }
+  }
   .md\:grid-cols-3 {
     @media (width >= 48rem) {
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -693,6 +726,16 @@
   .md\:px-8 {
     @media (width >= 48rem) {
       padding-inline: calc(var(--spacing) * 8);
+    }
+  }
+  .md\:px-\[4vw\] {
+    @media (width >= 48rem) {
+      padding-inline: 4vw;
+    }
+  }
+  .md\:px-\[5vw\] {
+    @media (width >= 48rem) {
+      padding-inline: 5vw;
     }
   }
   .md\:px-\[10vw\] {
@@ -776,6 +819,11 @@
   .md\:text-\[16px\] {
     @media (width >= 48rem) {
       font-size: 16px;
+    }
+  }
+  .lg\:flex {
+    @media (width >= 64rem) {
+      display: flex;
     }
   }
   .lg\:min-w-\[250px\] {

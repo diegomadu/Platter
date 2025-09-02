@@ -15,7 +15,7 @@
 {%- endstyle -%}
 
 <div class="color-{{ section.settings.color_scheme }} section-{{ section.id }}">
-    <div class="w-full px-5 md:px-[10vw] lg:px-[6vw] md:!pr-0 py-10">
+    <div class="w-full px-5 md:px-[4vw] lg:px-[6vw] md:!pr-0 py-10">
 
         {% if section.settings.collection != blank %}
             <div class="flex items-center justify-between mb-6 pr-[10vw] md:pr-[10vw] lg:pr-[6vw]">
@@ -29,22 +29,22 @@
             </div>
         {% endif %}
 
-        <div class="platter-grid grid-cols-2 gap-3 md:flex md:gap-6 lg:gap-8 overflow-x-auto scroll-smooth pb-3 pr-0">
+        <div class="platter-grid grid-cols-2 gap-3 sm:flex sm:gap-4 md:gap-6 lg:gap-8 overflow-x-auto scroll-smooth pb-3 pr-0">
             {% for item in section.settings.collection.products %}
-                <div class="platter-card min-w-[115px] sm:min-w-[120px] lg:min-w-[250px] {% if forloop.index0 >= 4 %}platter-card--hidden max-sm:hidden{% endif %}" data-index="{{ forloop.index0 }}">
+                <div class="platter-card w-full sm:min-w-[160px] md:min-w-[200px] lg:min-w-[250px] {% if forloop.index0 >= 4 %}platter-card--hidden max-sm:hidden{% endif %}" data-index="{{ forloop.index0 }}">
                     {% render 'platter-card-product',
-                    card_product: item,
-                    id: forloop.index0,
-                    image_ratio: section.settings.image_ratio %}
+                        card_product: item,
+                        id: forloop.index0,
+                        image_ratio: section.settings.image_ratio %}
                 </div>
             {% else %}
-            <p class="text-center col-span-full">
-                No products found in this collection.
-            </p>
+                <p class="text-center col-span-full">
+                    No products found in this collection.
+                </p>
             {% endfor %}
         </div>
 
-        <div class="flex justify-center mt-8 md:hidden mx-auto">
+        <div class="flex justify-center mt-8 sm:hidden mx-auto">
             <button class="button w-full">Show More</button>
         </div>
     </div>
