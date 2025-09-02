@@ -4,18 +4,59 @@
 %}
 
 <div class="group relative">
-    <a href="{{ card_product.url }}" title="{{ card_product.title }}">
-      <div class="relative overflow-hidden rounded-2xl">
-        <span class="absolute top-3 left-3 border border-gray-300 text-xs font-medium px-2 py-1 rounded-full">BEST SELLER</span>
-        {% render 'platter-image', id: id, image: image_featured, image_ratio: image_ratio %}
-      </div>
-      <div class="p-3">
-          <h3 class="subheading text-[14px] md:text-[16px] font-normal">{{ card_product.title }}</h3>
-          <div class="flex items-center mt-1 space-x-1">
-            <div class="flex text-[10px]">★★★★★</div>
-            <span class="text-[11px] ml-1">1,234 Reviews</span>
+  <a href="{{ card_product.url }}" title="{{ card_product.title }}">
+    <div class="relative overflow-hidden rounded-2xl">
+
+      <span class="subheading absolute z-[1] top-3 left-3 border bg-white border-black text-xs font-medium px-2 py-1 rounded-full">
+        BEST SELLER
+      </span>
+
+      {% if card_product.compare_at_price > card_product.price %}
+        {% assign discount = card_product.compare_at_price | minus: card_product.price %}
+        {% assign discount_percentage = discount | times: 100 | divided_by: card_product.compare_at_price | round %}
+        <span class="subheading absolute z-[1] top-3 right-3 bg-green-900 text-white text-xs font-medium px-2 py-1 rounded-full">
+          SAVE {{ discount_percentage }}%
+        </span>
+      {% endif %}
+
+      <div class="relative w-full h-full">
+        <div class="w-full h-full">
+          {% render 'platter-image', id: id, image: image_featured, image_ratio: image_ratio, class: "w-full h-full object-cover transition-opacity duration-300" %}
+        </div>
+
+        {% if card_product.images.size > 1 %}
+          {% assign second_image = card_product.images[1] %}
+          <div class="absolute top-0 left-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            {% render 'platter-image', id: id, image: second_image, image_ratio: image_ratio, class: "w-full h-full object-cover" %}
           </div>
-          <p class="mt-5 text-[14px] font-medium">{{ card_product.price | money }}</p>
+        {% endif %}
       </div>
-    </a>
+    </div>
+
+    <div class="p-3">
+      <h3 class="subheading text-[14px] md:text-[16px] font-normal">
+        {{ card_product.title }}
+      </h3>
+
+      <div class="flex items-center mt-1 space-x-1">
+        <div class="flex text-[10px]">★★★★★</div>
+        <span class="text-[11px] ml-1">1,234 Reviews</span>
+      </div>
+
+      <div class="mt-5 flex items-center gap-2">
+        {% if card_product.compare_at_price > card_product.price %}
+          <span class="text-[12px] font-normal line-through text-gray-400">
+            {{ card_product.compare_at_price | money }}
+          </span>
+          <span class="text-[14px] font-semibold">
+            {{ card_product.price | money }}
+          </span>
+        {% else %}
+          <span class="text-[14px] font-semibold">
+            {{ card_product.price | money }}
+          </span>
+        {% endif %}
+      </div>
+    </div>
+  </a>
 </div>
