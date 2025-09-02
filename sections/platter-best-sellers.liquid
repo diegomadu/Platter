@@ -15,7 +15,7 @@
 {%- endstyle -%}
 
 <div class="color-{{ section.settings.color_scheme }} section-{{ section.id }}">
-    <div class="w-full pl-[10vw] md:pl-[10vw] lg:pl-[6vw] pr-0 py-10">
+    <div class="w-full px-5 md:px-[10vw] lg:px-[6vw] md:!pr-0 py-10">
 
         {% if section.settings.collection != blank %}
             <div class="flex items-center justify-between mb-6 pr-[10vw] md:pr-[10vw] lg:pr-[6vw]">
@@ -29,31 +29,55 @@
             </div>
         {% endif %}
 
-        <!-- Scroll horizontal invisível e visível no hover -->
-        <div class="flex gap-6 lg:gap-8 overflow-x-auto scroll-smooth pb-3 pr-0">
-            {% for i in (1..2) %}
-                {% for item in section.settings.collection.products %}
-                    <div class="min-w-[230px] lg:min-w-[250px]">
-                        {% render 'platter-card-product',
-                            card_product: item,
-                            id: forloop.index0,
-                            image_ratio: section.settings.image_ratio %}
-                    </div>
-                {% else %}
-                    <p class="text-center col-span-full">
-                        No products found in this collection.
-                    </p>
-                {% endfor %}
+        <div class="platter-grid grid-cols-2 gap-3 md:flex md:gap-6 lg:gap-8 overflow-x-auto scroll-smooth pb-3 pr-0">
+            {% for item in section.settings.collection.products %}
+                <div class="min-w-[115px] sm:min-w-[120px] lg:min-w-[250px] {% if forloop.index0 >= 2 %}hidden{% endif %} md:block" data-index="{{ forloop.index0 }}">
+                    {% render 'platter-card-product',
+                    card_product: item,
+                    id: forloop.index0,
+                    image_ratio: section.settings.image_ratio %}
+                </div>
+            {% else %}
+            <p class="text-center col-span-full">
+                No products found in this collection.
+            </p>
             {% endfor %}
         </div>
 
-        <div class="flex justify-center mt-8 md:hidden pr-[10vw]">
-            <button class="w-full sm:w-auto bg-black text-lg font-semibold px-8 py-3 rounded-full shadow hover:bg-gray-800 transition-colors">
-                Show More
-            </button>
+        <div class="flex justify-center mt-8 md:hidden mx-auto">
+            <button class="button w-full">Show More</button>
         </div>
     </div>
 </div>
+
+<script defer>
+    const PlatterBestSellers = {
+        wrapperBestSellers: null,
+        init() {
+            this.wrapperBestSellers = document.querySelector('.section-{{ section.id }}');
+            this.bindEvents();
+        },
+        bindEvents() {
+            const button = this.wrapperBestSellers.querySelector('.button');
+            if (button) {
+                button.addEventListener('click', this.showMore.bind(this));
+            }
+        },
+        showMore() {
+            const hiddenItems = this.wrapperBestSellers.querySelectorAll('.platter-grid > div.hidden');
+            hiddenItems.forEach((item, index) => {
+                item.classList.remove('hidden');
+            });
+            if (this.wrapperBestSellers.querySelectorAll('.platter-grid > div.hidden').length === 0) {
+                const button = this.wrapperBestSellers.querySelector('.button');
+                if (button) {
+                    button.style.display = 'none';
+                }
+            }
+        }
+    }
+    PlatterBestSellers.init();
+</script>
 
 {% schema %}
 {
